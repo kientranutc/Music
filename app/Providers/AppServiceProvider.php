@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,8 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
     }
+
+
 
     /**
      * Register any application services.
@@ -23,6 +26,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $repositories = [
+                'Users\UserRepositoryInterface' => 'Users\UserRepository',
+                'GenerateKey\GenerateKeyRepositoryInterface' => 'GenerateKey\GenerateKeyRepository'
+        ];
+        foreach($repositories as $key=>$val){
+            $this->app->bind("App\\Repositories\\$key", "App\\Repositories\\$val");
+        }
+
     }
 }
