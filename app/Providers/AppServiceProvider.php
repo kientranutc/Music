@@ -28,7 +28,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $repositories = [
                 'Users\UserRepositoryInterface' => 'Users\UserRepository',
-                'GenerateKey\GenerateKeyRepositoryInterface' => 'GenerateKey\GenerateKeyRepository'
+                'GenerateKey\GenerateKeyRepositoryInterface' => 'GenerateKey\GenerateKeyRepository',
+                'Country\CountryRepositoryInterface' => 'Country\CountryRepository',
+                'Topic\TopicRepositoryInterface' => 'Topic\TopicRepository',
+                'Album\AlbumRepositoryInterface' => 'Album\AlbumRepository',
+                'Song\SongRepositoryInterface' => 'Song\SongRepository'
         ];
         foreach($repositories as $key=>$val){
             $this->app->bind("App\\Repositories\\$key", "App\\Repositories\\$val");
