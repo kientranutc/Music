@@ -11,14 +11,14 @@ class GenerateKeyRepository implements GenerateKeyRepositoryInterface
 
     public function findByAttrbute($att, $name)
     {
-        return GenerateKey::where($att, $name)->fist();
+        return GenerateKey::where($att, $name)->first();
     }
 
     public function generateApiToken()
     {
         $key = new GenerateKey();
         $apiToken = str_random(32);
-        if (GenerateKey::where('api_token', '=',  $apiToken)->exists()){
+        if (GenerateKey::where('api_token', '=', $apiToken)->exists()){
             $apiToken = str_random(32);
         }
         $key->api_token = $apiToken;
